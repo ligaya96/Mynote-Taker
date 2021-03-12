@@ -17,13 +17,13 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/note
 // Create Notes
 app.post('/api/notes', (req, res) => {
   const newNotes = req.body;
- fs.readfile('./Develop/db/db.json', (err, data) => {
+ fs.readfile('./Develop/db.json', (err, data) => {
    if (err) {
      console.log('error');
      const textData = JSON.parse(data); 
    };
    textData.push(newNotes);
-   fs.readfile('./Develop/db/db.json', JSON.stringify(textData), 'utf8' , (err) => {
+   fs.readfile('./Develop/db.json', JSON.stringify(textData), 'utf8' , (err) => {
   if(err){
     throw error;
   }
@@ -34,19 +34,28 @@ app.post('/api/notes', (req, res) => {
 
 //Display Notes
 app.post('/api/notes', (req,res) => {
-  fs.readFile('.Develop/db/db.json', 'utf8', function(err, data) {
+  fs.readFile('./Develop/db.json', 'utf8', function(err, data) {
     const displayData = JSON.parse(data);
     res.send(displayData);
   });
 });
-// //Delete Note
-// app.delete(`/api/notes/${id}`, (req,res) =>{
-//   fs.readFile("./model/db.json",'utf8', (err,data) => {
-//     if(err) {
-//          throw err;
-//     }
 
-// })
+//Delete Note
+app.delete(`/api/notes/:id`, (req,res) =>{
+  fs.readFile("./Develop/db.json",'utf8', (err,data) => {
+    if(err) {
+         throw err;
+    }
+    const textID = JSON.parse(data);
+    if(req.params.id == textID[i].id){
+      textID.splice(i,1);
+    }
+    fs.writeFile("./Develop/db.json", JSON.stringify(textID), (err)=>{
+      if (err) throw err;
+    });
+  });
+  res.send(textID);
+})
 
   
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
