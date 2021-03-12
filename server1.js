@@ -13,49 +13,47 @@ app.use(express.static('./public'));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
 
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/notes.html')));
+
+//Display Notes
+app.get('/api/notes', (req,res) => {
+  fs.readFile('Develop/db.json', 'utf8', function(err, data) {
+    const displayText = JSON.parse(data);
+    res.send(displayText);
+  });
+});
+
   
 // Create Notes
 app.post('/api/notes', (req, res) => {
   const newNotes = req.body;
- fs.readfile('./Develop/db.json', (err, data) => {
-   if (err) {
-     console.log('error');
-     const textData = JSON.parse(data); 
-   };
-   textData.push(newNotes);
-   fs.readfile('./Develop/db.json', JSON.stringify(textData), 'utf8' , (err) => {
-  if(err){
-    throw error;
-  }
-   console.log('opps! Note not saved')
-  })
-  })
-});
-
-//Display Notes
-app.post('/api/notes', (req,res) => {
-  fs.readFile('./Develop/db.json', 'utf8', function(err, data) {
-    const displayData = JSON.parse(data);
-    res.send(displayData);
-  });
-});
-
-//Delete Note
-app.delete(`/api/notes/:id`, (req,res) =>{
-  fs.readFile("./Develop/db.json",'utf8', (err,data) => {
-    if(err) {
-         throw err;
-    }
-    const textID = JSON.parse(data);
-    if(req.params.id == textID[i].id){
-      textID.splice(i,1);
-    }
-    fs.writeFile("./Develop/db.json", JSON.stringify(textID), (err)=>{
-      if (err) throw err;
+  fs.readfile('Develop/db.json', (err, data) => {
+   if (err) throw error ; 
+     const textData = JSON.parse(data);
+     textData.push(newNotes);
+   fs.writefile('Develop/db.json', JSON.stringify(textData), 'utf8', (err) => {
+     if(err)  throw error;
+      console.log('opps! Note not saved')
     });
-  });
-  res.send(textID);
-})
+  });  
+});
+
+
+// //Delete Note
+// app.delete(`/api/notes/:id`, (req,res) =>{
+//   fs.readFile("./Develop/db.json",'utf8', (err,data) => {
+//     if(err) {
+//          throw err;
+//     }
+//     const textID = JSON.parse(data);
+//     if(req.params.id == textID[i].id){
+//       textID.splice(i,1);
+//     }
+//     fs.writeFile("./Develop/db.json", JSON.stringify(textID), (err)=>{
+//       if (err) throw err;
+//     });
+//   });
+//   res.send(textID);
+// })
 
   
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));

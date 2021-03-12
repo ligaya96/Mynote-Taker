@@ -10,7 +10,10 @@ Node
 Express
 
 ## Heroku
-My Heroku Link
+My Heroku Link 
+<a href="https://www.w3schools.com/">Visit My Heroku deployed Website</a>
 
 ## ScreenShot
+<img src="./screenshots/mynotetaker.png" alt="my-notetaker">
+<img src="./screenshots/" alt="">
 
