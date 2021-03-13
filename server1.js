@@ -26,12 +26,12 @@ app.get('/api/notes', (req,res) => {
 // Create Notes
 app.post('/api/notes', (req, res) => {
   const newNotes = req.body;
-  fs.readfile('Develop/db.json', (err, data) => {
+  fs.readFile('Develop/db.json', (err, data) => {
    if (err) throw error ; 
      const textData = JSON.parse(data);
      textData.push(newNotes);
-   fs.writefile('Develop/db.json', JSON.stringify(textData), 'utf8', (err) => {
-     if(err)  throw error;
+   fs.writeFile('Develop/db.json', JSON.stringify(textData), 'utf8', (err) => {
+     if(err) throw error;
       console.log('opps! Note not saved')
     });
   });  

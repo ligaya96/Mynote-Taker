@@ -15,5 +15,5 @@ My Heroku Link
 
 ## ScreenShot
 <img src="./screenshots/mynotetaker.png" alt="my-notetaker">
-<img src="./screenshots/" alt="">
+
 
