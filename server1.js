@@ -56,4 +56,4 @@ app.post('/api/notes', (req, res) => {
 // })
 
   
-app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
+app.listen(PORT, () => console.log("App listening on" + PORT));
