@@ -4,14 +4,15 @@
 This App allows the user to input various tasks that needs to be accomplish. Allowing the User to Add, View and Delete task that they have entered. 
 
 ## Table of Contents
-#[Description](#description)
-#[Heroku](#heroku)
-#[Contributers](#contributors)
-#[Installation Process](#installation process)
+[Description](#description)
+[Heroku](#heroku)
+[Contributers](#contributers)
+[Installation Process](#installation)
    
-## Installation Prcoess
+## Installation Process
 Node
 Express
+Heroku
  
 ## Contributers
 Ligaya Herndon 
