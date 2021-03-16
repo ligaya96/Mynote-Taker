@@ -2,6 +2,9 @@
 const express = require("express");
 const path = require("path")
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+const Notes = require('./db/db.json');
+
 //Express stuff
 const app = express();
 const PORT = process.env.Port || 3000;
@@ -16,7 +19,7 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/note
 
 //Display Notes
 app.get('/api/notes', (req,res) => {
-  fs.readFile('Develop/db.json', 'utf8', function(err, data) {
+  fs.readFile('./db/db.json', 'utf8', function(err, data) {
     const displayText = JSON.parse(data);
     res.send(displayText);
   });
@@ -25,35 +28,32 @@ app.get('/api/notes', (req,res) => {
   
 // Create Notes
 app.post('/api/notes', (req, res) => {
-  const newNotes = req.body;
-  fs.readFile('Develop/db.json', (err, data) => {
+  fs.readFile('./db/db.json', (err, data) => {
    if (err) throw error ; 
+   const newNotes = req.body;
+    Notes.id = uuidv4(Notes.id);
      const textData = JSON.parse(data);
      textData.push(newNotes);
-   fs.writeFile('Develop/db.json', JSON.stringify(textData), 'utf8', (err) => {
+   fs.writeFile('./db/db.json', JSON.stringify(textData), 'utf8', (err) => {
      if(err) throw error;
       console.log('opps! Note not saved')
     });
+    Notes.push(data)
   });  
 });
 
 
 // //Delete Note
 // app.delete(`/api/notes/:id`, (req,res) =>{
-//   fs.readFile("./Develop/db.json",'utf8', (err,data) => {
-//     if(err) {
-//          throw err;
-//     }
-//     const textID = JSON.parse(data);
-//     if(req.params.id == textID[i].id){
-//       textID.splice(i,1);
-//     }
-//     fs.writeFile("./Develop/db.json", JSON.stringify(textID), (err)=>{
-//       if (err) throw err;
-//     });
+//   const textID= req.params.id;
+//   Note= Notes.filter((notes, index)=>{
+//     return textID !== notes.id;
+// });
+//   fs.writeFile('./db/db.json', JSON.stringify(Note), (err)=>{
+//   if (err) throw err;
 //   });
-//   res.send(textID);
-// })
+//   res.json(true);
+// });   
 
   
-app.listen(PORT, () => console.log("App listening on" + PORT));
+app.listen(PORT, () => console.log("App listening on " + PORT));

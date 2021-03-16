@@ -1,11 +1,15 @@
 # Mynote-Taker 
 
-## Descrition
+## Description
 This App allows the user to input various tasks that needs to be accomplish. Allowing the User to Add, View and Delete task that they have entered. 
 
 ## Table of Contents
+[Description](#description)
+[Heroku](#heroku)
+[Contributers](#contributors)
+[Installation Process](#installation)
    
-## Installation
+## Installation Prcoess
 Node
 Express
 
