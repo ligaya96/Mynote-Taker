@@ -2,11 +2,11 @@
   "name": "note-taker",
   "version": "1.0.0",
   "description": "a website to help a user with taking notes",
-  "main": "server1.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server1.js",
-    "watch": "nodemon serve1r.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
